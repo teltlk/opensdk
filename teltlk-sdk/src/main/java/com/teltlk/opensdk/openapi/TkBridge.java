@@ -16,7 +16,7 @@ import com.teltlk.opensdk.util.Utils;
 final class TkBridge implements ITkBridge {
     protected Context context;
     protected boolean checkSignature = true;
-    private static final String TAG = "TKApi";
+    private static final String TAG = "tkBridge";
 
     TkBridge(Context context) {
         this.context = context;
@@ -24,11 +24,11 @@ final class TkBridge implements ITkBridge {
 
     @Override
     public boolean handleIntent(Intent intent, ITkBridgeEventHandler eventHandler) {
-        if (!TkApiImplComm.isIntentFromTK(intent, "com.teltlk.app.openapi.token")) {
+        if (!TkBridgeImplComm.isIntentFromTK(intent, "com.teltlk.app.openapi.token")) {
             Log.i(TAG, "handleIntent fail, intent not from TELTLK msg");
             return false;
         } else if (context == null) {
-            Log.i(TAG, "handleIntent fail, TKAPI has been detached");
+            Log.i(TAG, "handleIntent fail, tkBridge has been detached");
             return false;
         }
         int cmd = intent.getIntExtra("_tkapi_command_type", 0);
@@ -55,7 +55,7 @@ final class TkBridge implements ITkBridge {
             return false;
         }
         try {
-            return TkApiImplComm.validateAppSignatureForPackage(context, Constant.packageName, checkSignature);
+            return TkBridgeImplComm.validateAppSignatureForPackage(context, Constant.packageName, checkSignature);
 
         } catch (Exception e) {
             return false;
@@ -66,7 +66,7 @@ final class TkBridge implements ITkBridge {
     @Override
     public boolean openTKApp() {
         if (context == null) {
-            Log.i(TAG, "openTKApp fail, TKAPI has been detached");
+            Log.i(TAG, "openTKApp fail, tkBridge has been detached");
             return false;
         }
         if (isTKAppInstalled()) {
@@ -92,9 +92,9 @@ final class TkBridge implements ITkBridge {
     @Override
     public boolean authenticate(AuthReq req) {
         if (context == null) {
-            Log.i(TAG, "authenticate fail, TKAPI has been detached");
+            Log.i(TAG, "authenticate fail, tkBridge has been detached");
             return false;
-        } else if (!TkApiImplComm.validateAppSignatureForPackage(context, Constant.packageName, checkSignature)) {
+        } else if (!TkBridgeImplComm.validateAppSignatureForPackage(context, Constant.packageName, checkSignature)) {
             Log.e(TAG, "authenticate failed for TELTLK app signature check failed");
             return false;
         } else {
@@ -107,9 +107,9 @@ final class TkBridge implements ITkBridge {
     @Override
     public boolean doPay(PayReq req) {
         if (context == null) {
-            Log.i(TAG, "doPay fail, TKAPI has been detached");
+            Log.i(TAG, "doPay fail, tkBridge has been detached");
             return false;
-        } else if (!TkApiImplComm.validateAppSignatureForPackage(context, Constant.packageName, this.checkSignature)) {
+        } else if (!TkBridgeImplComm.validateAppSignatureForPackage(context, Constant.packageName, this.checkSignature)) {
             Log.e(TAG, "doPay failed for TELTLK app signature check failed");
             return false;
         } else {
@@ -161,7 +161,7 @@ final class TkBridge implements ITkBridge {
 
     private boolean send(int commandType, Bundle bundle) {
         if (context == null) {
-            Log.i(TAG, "send fail, TKAPI has been detached");
+            Log.i(TAG, "send fail, tkBridge has been detached");
             return false;
         }
         try {
