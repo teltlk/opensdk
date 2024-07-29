@@ -23,8 +23,8 @@ final class TkBridge implements ITkBridge {
     }
 
     @Override
-    public boolean handleIntent(Intent intent, ITKAPIEventHandler eventHandler) {
-        if (!TKApiImplComm.isIntentFromTK(intent, "com.teltlk.app.openapi.token")) {
+    public boolean handleIntent(Intent intent, ITkBridgeEventHandler eventHandler) {
+        if (!TkApiImplComm.isIntentFromTK(intent, "com.teltlk.app.openapi.token")) {
             Log.i(TAG, "handleIntent fail, intent not from TELTLK msg");
             return false;
         } else if (context == null) {
@@ -55,7 +55,7 @@ final class TkBridge implements ITkBridge {
             return false;
         }
         try {
-            return TKApiImplComm.validateAppSignatureForPackage(context, Constant.packageName, checkSignature);
+            return TkApiImplComm.validateAppSignatureForPackage(context, Constant.packageName, checkSignature);
 
         } catch (Exception e) {
             return false;
@@ -94,7 +94,7 @@ final class TkBridge implements ITkBridge {
         if (context == null) {
             Log.i(TAG, "authenticate fail, TKAPI has been detached");
             return false;
-        } else if (!TKApiImplComm.validateAppSignatureForPackage(context, Constant.packageName, checkSignature)) {
+        } else if (!TkApiImplComm.validateAppSignatureForPackage(context, Constant.packageName, checkSignature)) {
             Log.e(TAG, "authenticate failed for TELTLK app signature check failed");
             return false;
         } else {
@@ -109,7 +109,7 @@ final class TkBridge implements ITkBridge {
         if (context == null) {
             Log.i(TAG, "doPay fail, TKAPI has been detached");
             return false;
-        } else if (!TKApiImplComm.validateAppSignatureForPackage(context, Constant.packageName, this.checkSignature)) {
+        } else if (!TkApiImplComm.validateAppSignatureForPackage(context, Constant.packageName, this.checkSignature)) {
             Log.e(TAG, "doPay failed for TELTLK app signature check failed");
             return false;
         } else {

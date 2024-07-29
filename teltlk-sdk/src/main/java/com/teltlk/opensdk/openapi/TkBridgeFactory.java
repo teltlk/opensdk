@@ -4,7 +4,7 @@ import android.content.Context;
 
 public class TkBridgeFactory {
 
-    public static ITkBridge createTKAPI(Context context) {
+    public static ITkBridge createTKBridge(Context context) {
         return new TkBridge(context);
     }
 

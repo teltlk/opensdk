@@ -2,7 +2,7 @@ package com.teltlk.opensdk.openapi;
 
 import com.teltlk.opensdk.model.base.BaseResp;
 
-public interface ITKAPIEventHandler {
+public interface ITkBridgeEventHandler {
 
     void onResp(BaseResp baseResp);
 }

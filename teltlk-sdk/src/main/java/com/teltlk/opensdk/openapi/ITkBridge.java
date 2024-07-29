@@ -7,7 +7,7 @@ import com.teltlk.opensdk.model.PayReq;
 
 public interface ITkBridge {
 
-    boolean handleIntent(Intent intent, ITKAPIEventHandler eventHandler);
+    boolean handleIntent(Intent intent, ITkBridgeEventHandler eventHandler);
 
     boolean isTKAppInstalled();
 

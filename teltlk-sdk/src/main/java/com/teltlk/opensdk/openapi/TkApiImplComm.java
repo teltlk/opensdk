@@ -11,10 +11,10 @@ import android.util.Log;
 
 import com.teltlk.opensdk.constants.Constant;
 
-class TKApiImplComm {
+class TkApiImplComm {
     private static final String TAG = "TK.SDK.TKMsgImplComm";
 
-    private TKApiImplComm() {
+    private TkApiImplComm() {
 
     }
 
