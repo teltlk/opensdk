@@ -120,7 +120,7 @@ final class TKApi implements ITKAPI {
     }
 
     @Override
-    public boolean openOfficial(String appID, String redirectPath, String argument) {
+    public boolean official(String appID, String redirectPath, String argument) {
         if (Utils.isEmpty(appID)) {
             Log.e(TAG, "openOfficial failed for AppID cannot be null");
             return false;
@@ -136,7 +136,7 @@ final class TKApi implements ITKAPI {
     }
 
     @Override
-    public boolean toSingleChat(String openID) {
+    public boolean addFriend(String openID) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tk://teltlk.com/chat?openID=" + openID));
             context.startActivity(intent);
@@ -148,7 +148,7 @@ final class TKApi implements ITKAPI {
     }
 
     @Override
-    public boolean toGroupChat(String groupID) {
+    public boolean joinGroup(String groupID) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tk://teltlk.com/chat?groupID=" + groupID));
             context.startActivity(intent);

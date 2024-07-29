@@ -16,10 +16,10 @@ public interface ITKAPI {
     boolean authenticate(AuthReq payReq);
     boolean doPay(PayReq payReq);
 
-    boolean openOfficial(String appID, String redirectPath, String argument);
+    boolean official(String appID, String redirectPath, String argument);
 
-    boolean toSingleChat(String openID);
-    boolean toGroupChat(String groupID);
+    boolean addFriend(String openID);
+    boolean joinGroup(String groupID);
     void detach();
 
 }
