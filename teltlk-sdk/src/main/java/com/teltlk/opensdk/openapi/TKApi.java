@@ -13,12 +13,12 @@ import com.teltlk.opensdk.model.PayReq;
 import com.teltlk.opensdk.model.PayResp;
 import com.teltlk.opensdk.util.Utils;
 
-final class TKApi implements ITKAPI {
+final class TkBridge implements ITkBridge {
     protected Context context;
     protected boolean checkSignature = true;
     private static final String TAG = "TKApi";
 
-    TKApi(Context context) {
+    TkBridge(Context context) {
         this.context = context;
     }
 

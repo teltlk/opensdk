@@ -5,7 +5,7 @@ import android.content.Intent;
 import com.teltlk.opensdk.model.AuthReq;
 import com.teltlk.opensdk.model.PayReq;
 
-public interface ITKAPI {
+public interface ITkBridge {
 
     boolean handleIntent(Intent intent, ITKAPIEventHandler eventHandler);
 
